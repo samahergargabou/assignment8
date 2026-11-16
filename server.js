@@ -34,6 +34,52 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Basic Routes
+app.get('/hello', (req, res) => {
+  res.type('text/plain').send("Hello from Samaher's server");
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain').send('User-agent: *\nDisallow: /api/admin\nAllow: /');
+});
+
+app.get('/old-page', (req, res) => {
+  res.redirect(302, '/hello');
+});
+
+// API Endpoints
+app.get('/api/courses', (req, res) => {
+  res.json(COURSES);
+});
+
+app.get('/api/status', (req, res) => {
+  res.json({
+    status: 'operational',
+    nodeVersion: process.version,
+    uptimeSeconds: Math.floor(process.uptime())
+  });
+});
+
+app.get('/api/headers', (req, res) => {
+  res.json({
+    'user-agent': req.get('user-agent') || 'Unknown',
+    'accept': req.get('accept') || '*/*'
+  });
+});
+
+app.post('/api/subscribe', (req, res) => {
+  res.status(201).json({ subscribed: true });
+});
+
+app.get('/api/admin', (req, res) => {
+  res.status(403).json({ error: 'Forbidden' });
+});
+
+app.get('/api/stats', (req, res) => {
+  res.json({ requestsServed: requestCount });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server actively listening at: http://localhost:${PORT}`);
 });
