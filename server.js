@@ -83,3 +83,12 @@ app.get('/api/stats', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server actively listening at: http://localhost:${PORT}`);
 });
+
+
+// 404 Fallback Catch-All (Express 5 compatible)
+app.use((req, res) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ error: 'Not found' });
+  }
+  res.status(404).type('text/plain').send('404 Not Found: The requested resource does not exist.');
+});
