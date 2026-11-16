@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Programme Server</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Cloud & Web Engineering Programme</h1>
+      <p class="subtitle">
+        Welcome to the Information Server. This platform provides real-time access to our
+        undergraduate curriculum, operational diagnostics, and interactive endpoint inspection.
+      </p>
+    </header>
+
+    <section class="endpoint-panel">
+      <h2>Interactive Endpoint Explorer</h2>
+      <p class="instructions">Click any button below to test client-side dispatch and server handling:</p>
+
+      <div class="button-grid">
+        <button id="btn-courses">GET /api/courses</button>
+        <button id="btn-status">GET /api/status</button>
+        <button id="btn-headers">GET /api/headers</button>
+        <button id="btn-subscribe" class="btn-action">POST /api/subscribe</button>
+        <button id="btn-admin" class="btn-warn">GET /api/admin</button>
+        <button id="btn-stats">GET /api/stats</button>
+        <button id="btn-missing" class="btn-danger">GET /api/missing (404)</button>
+      </div>
+    </section>
+
+    <section class="response-panel">
+      <h2>Response Output</h2>
+      <div class="status-indicator">
+        <strong>HTTP Status:</strong> <span id="status-display">—</span>
+      </div>
+      <pre id="body-display">// Server response will render here formatted as JSON or plain text...</pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
