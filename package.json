@@ -1,0 +1,14 @@
+{
+  "name": "assignment8",
+  "version": "1.0.0",
+  "description": "Express 5 Backend Information Server",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
